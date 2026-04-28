@@ -25,7 +25,7 @@ body {
 /* MARCA DE AGUA ACTUALIZADA */
 body::after {
     content: "";
-    background-image: url('Imagenes/Logo_final.png'); 
+    background-image: url('Imagenes/logo/Logo_final.png'); 
     background-position: center center;
     background-repeat: no-repeat;
     
@@ -56,10 +56,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 8%;
+    padding: 10px 5%; /* Un poco más de espacio lateral */
     position: sticky;
     top: 0;
-    background: rgba(74, 90, 106, 0.95);
+    background: rgba(74, 90, 106, 0.98);
     backdrop-filter: blur(10px);
     z-index: 100;
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -72,28 +72,55 @@ header {
 	border-radius:10%;
 }
 
-nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
-nav a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; }
-nav a:hover, .active { color: var(--dorado); }
-.whatsapp-link { 
-    background: #25d366; 
-    padding: 9px 18px; 
-    border-radius: 25px; 
-    color: white !important; 
+/* Contenedor principal de la navegación */
+nav ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 15px; /* Reducimos un poco el gap para que quepan mejor en pantallas medianas */
+    margin: 0; 
+    padding: 0; 
+    align-items: center; /* Alineación vertical perfecta */
+}
+
+/* Estilo base para TODOS los enlaces del menú */
+nav a { 
+    text-decoration: none; 
+    color: white; 
+    font-weight: 600; 
+    transition: 0.3s; 
+    padding: 9px 18px; /* Mismo padding que el botón de WhatsApp */
+    border-radius: 25px; /* Bordes redondeados para todos */
     display: flex;
     align-items: center;
+    border: 1px solid transparent; /* Evita saltos visuales al hacer hover */
+}
+
+/* Efecto hover para Inicio y Productos */
+nav a:not(.whatsapp-link):hover {
+    background: rgba(212, 175, 55, 0.1); /* Fondo dorado muy sutil */
+    color: var(--dorado);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* El botón activo (Inicio) */
+.active { 
+    color: var(--dorado) !important; 
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+/* Ajuste específico para WhatsApp para que mantenga su color pero mismo tamaño */
+.whatsapp-link { 
+    background: #25d366; 
+    color: white !important; 
     gap: 8px;
-    font-weight: 600;
-    transition: transform 0.3s ease, background 0.3s ease;
-    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .whatsapp-link:hover { 
     background: #128c7e; 
     transform: scale(1.05);
-    color: white !important;
 }
-
 .whatsapp-link i {
     font-size: 1.2rem;
 }
@@ -217,21 +244,27 @@ footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
 
 .slide {
     width: 250px;
+    flex-shrink: 0; /* EVITA QUE SE SOBREPONGAN */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 10px; /* Espaciado lateral interno */
 }
 
 .slide img {
-    height: 60px; /* Ajusta según el tamaño de tus logos */
+    height: 60px; 
     width: auto;
-    filter: grayscale(100%) brightness(1.5); /* Hace que los logos se vean uniformes */
+    /* Eliminamos grayscale(100%) y brightness(1.5) */
+    filter: none; 
     transition: 0.3s;
-    opacity: 0.7;
+    /* Subimos la opacidad para que se vean claros desde el inicio */
+    opacity: 1; 
+    object-fit: contain;
 }
 
+/* Opcional: Si quieres que al pasar el mouse resalten un poco más */
 .slide img:hover {
-    filter: grayscale(0%) brightness(1); /* Color real al pasar el mouse */
+    transform: scale(1.1); /* Crece un 10% al pasar el mouse */
     opacity: 1;
 }
 
@@ -243,10 +276,19 @@ footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
 
 /* Ajuste móvil */
 @media (max-width: 768px) {
-    .slide { width: 150px; }
-    .slider-track { width: calc(150px * 26); }
     @keyframes scrollLateral {
         100% { transform: translateX(calc(-150px * 13)); }
+    }
+    .slide { 
+        width: 160px; /* Ancho suficiente para que no se toquen */
+    }
+    .slider-track { 
+        /* Re-calculamos el ancho total para móviles basado en el nuevo ancho del slide */
+        width: calc(160px * 26); 
+    }
+    @keyframes scrollLateral {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-160px * 13)); }
     }
 }
 
@@ -370,4 +412,147 @@ footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
     border: 1px solid rgba(212, 175, 55, 0.5);
     border-radius: 8px;
     margin-bottom: 15px;
+}
+
+/* ESTILOS GALERÍA DE SENSORES */
+.galeria-sensores {
+    padding: 60px 8%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.galeria-title {
+    color: var(--dorado-brillante);
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sensor-item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sensor-item img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto Hover */
+.sensor-item:hover {
+    border-color: var(--dorado);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    transform: translateY(-5px);
+    background: rgba(58, 75, 92, 0.9);
+}
+
+.sensor-item:hover img {
+    transform: scale(1.15);
+}
+
+/* Overlay con el nombre del sensor */
+.sensor-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sensor-overlay span {
+    color: var(--dorado-brillante);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.sensor-item:hover .sensor-overlay {
+    opacity: 1;
+}
+
+/* Animación de entrada suave para la galería */
+.sensor-item {
+    animation: reveal 0.8s ease backwards;
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Retraso en la animación para cada item (opcional para efecto cascada) */
+.sensor-item:nth-child(n) { animation-delay: calc(0.05s * n); }
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular */
+        gap: 10px;
+    }
+}
+
+/* Botón Ver Más */
+.btn-ver-mas {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--dorado);
+    border: 2px solid var(--dorado);
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-ver-mas:hover {
+    background: var(--dorado);
+    color: var(--azul-fondo);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-ver-mas-active {
+    background: rgba(212, 175, 55, 0.2);
+}
+
+/* Ajuste de visibilidad para la animación */
+@keyframes reveal {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* En móviles, podrías querer que el grid se vea distinto al expandirse */
+@media (max-width: 768px) {
+    .galeria-grid .sensor-item:nth-child(n+5) {
+        display: none; /* Asegura que se oculten por defecto en carga */
+    }
 }
