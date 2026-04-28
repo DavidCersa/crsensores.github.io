@@ -244,22 +244,23 @@ footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
 
 .slide {
     width: 250px;
-    flex-shrink: 0; /* EVITA QUE SE SOBREPONGAN */
+    flex-shrink: 0; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 10px; /* Espaciado lateral interno */
+    padding: 0 15px; /* Aumentamos un poco el espacio entre marcas */
+    overflow: hidden; /* Corta cualquier desborde visual si existiera */
 }
 
 .slide img {
     height: 60px; 
     width: auto;
-    /* Eliminamos grayscale(100%) y brightness(1.5) */
+    /* NUEVOS AJUSTES */
+    max-width: 90%;      /* Evita que imágenes anchas toquen los bordes */
+    object-fit: contain; /* Mantiene la proporción sin deformar */
     filter: none; 
     transition: 0.3s;
-    /* Subimos la opacidad para que se vean claros desde el inicio */
     opacity: 1; 
-    object-fit: contain;
 }
 
 /* Opcional: Si quieres que al pasar el mouse resalten un poco más */
