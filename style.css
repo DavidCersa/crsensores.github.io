@@ -1,0 +1,373 @@
+/* EFECTO DE DESPLAZAMIENTO SUAVE */
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --azul-fondo: #4a5a6a;
+    --azul-card: rgba(58, 75, 92, 0.85);
+    --dorado: #d4af37;
+    --dorado-brillante: #f9e27d;
+    --texto: #e0e6ed;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--azul-fondo);
+    color: var(--texto);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* MARCA DE AGUA ACTUALIZADA */
+body::after {
+    content: "";
+    background-image: url('Imagenes/Logo_final.png'); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    /* TAMAÑO AJUSTADO: Reducido de 70vw a 35vw para PC */
+    background-size: 50vw; 
+    /* OPACIDAD: Ligeramente más transparente para que sea sutil */
+    opacity: 0.2; 
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    /* REDONDEADO: Aplica un borde redondeado sutil a la imagen de fondo */
+    border-radius: 20%;
+	overflow: hidden;	
+}
+
+/* Ajuste móvil para el fondo */
+@media (max-width: 768px) {
+    body::after {
+        background-size: 70vw; /* El fondo sigue siendo grande en móviles */
+        border-radius: 10px;    /* Redondeado menor en pantallas pequeñas */
+    }
+}
+
+
+/* HEADER CON LOGO */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    position: sticky;
+    top: 0;
+    background: rgba(74, 90, 106, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.header-logo {
+    height: 80px; /* Ajuste del tamaño del logo en el menú */
+    width: auto;
+	opacity: 0.7;
+	border-radius:10%;
+}
+
+nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+nav a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; }
+nav a:hover, .active { color: var(--dorado); }
+.whatsapp-link { 
+    background: #25d366; 
+    padding: 9px 18px; 
+    border-radius: 25px; 
+    color: white !important; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: transform 0.3s ease, background 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-link:hover { 
+    background: #128c7e; 
+    transform: scale(1.05);
+    color: white !important;
+}
+
+.whatsapp-link i {
+    font-size: 1.2rem;
+}
+
+/* Hero & Intro */
+.hero { padding: 80px 8% 40px; text-align: right; position: relative; z-index: 10; }
+.hero-content h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; }
+.gold-text { color: var(--dorado-brillante); }
+.btn-soluciones { display: inline-block; padding: 12px 35px; border: 2px solid var(--dorado); color: var(--dorado); text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s; }
+
+.company-intro { padding: 30px 8%; display: flex; justify-content: center; position: relative; z-index: 10; }
+.intro-container { max-width: 960px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); padding: 30px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15); text-align: center; }
+
+/* GRID DE PRODUCTOS */
+.products-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 50px 8%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    scroll-margin-top: 100px;
+}
+
+.product-card {
+    background: var(--azul-card);
+    backdrop-filter: blur(8px);
+    padding: 25px;
+    border-radius: 15px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    max-height: 140px; /* Altura para mostrar solo el inicio */
+}
+
+.product-card.clickable { cursor: pointer; }
+
+.card-main-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.product-card h3 { margin: 0; font-size: 1.1rem; color: var(--dorado-brillante); display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.gold-icon { font-size: 2rem; color: var(--dorado); }
+.arrow-icon { font-size: 0.8rem; transition: transform 0.3s; }
+
+/* Estilos Desplegables */
+.sub-products {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 45px;
+    display: none;
+    border-left: 2px solid var(--dorado);
+    padding-left: 15px;
+}
+
+.sub-products li { font-size: 0.9rem; color: #fff; margin-bottom: 8px; opacity: 0.9; }
+
+.product-card.active {
+    max-height: 600px; /* Se expande para mostrar la lista larga */
+    background: rgba(58, 75, 92, 1);
+    border-color: var(--dorado);
+}
+
+.product-card.active .sub-products { display: block; animation: fadeIn 0.4s ease; }
+.product-card.active .arrow-icon { transform: rotate(180deg); }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
+
+@media (max-width: 768px) {
+    header { flex-direction: column; gap: 15px; }
+    .hero-content h1 { font-size: 2.2rem; }
+    .product-card { width: 100%; }
+}
+
+/* SECCIÓN MARCAS SLIDER */
+.marcas-slider {
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.slider-title {
+    color: var(--dorado-brillante);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.slider-container {
+    width: 100%;
+    overflow: hidden; /* Oculta lo que sale del cuadro */
+    background: rgba(58, 75, 92, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 20px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.slider-track {
+    display: flex;
+    width: calc(250px * 26); /* Ancho de imagen (250px) x total de imágenes (13x2) */
+    animation: scrollLateral 40s linear infinite;
+}
+
+.slide {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide img {
+    height: 60px; /* Ajusta según el tamaño de tus logos */
+    width: auto;
+    filter: grayscale(100%) brightness(1.5); /* Hace que los logos se vean uniformes */
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.slide img:hover {
+    filter: grayscale(0%) brightness(1); /* Color real al pasar el mouse */
+    opacity: 1;
+}
+
+/* Animación de desplazamiento */
+@keyframes scrollLateral {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-250px * 13)); } /* Se desplaza la mitad exacta */
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    .slide { width: 150px; }
+    .slider-track { width: calc(150px * 26); }
+    @keyframes scrollLateral {
+        100% { transform: translateX(calc(-150px * 13)); }
+    }
+}
+
+/* ESTILOS SECCIÓN COTIZACIÓN FINAL */
+.cotizacion-final {
+    padding: 60px 8%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.cotizacion-container {
+    max-width: 1200px; /* Igual al ancho del grid de productos */
+    width: 100%;
+    background: var(--azul-card);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.resumen-intencion {
+    padding: 50px;
+    background: rgba(212, 175, 55, 0.03);
+    border-right: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.resumen-intencion h2 {
+    color: var(--dorado-brillante);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.formulario-whatsapp {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.selector-box {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#producto-interes {
+    padding: 15px;
+    background: #2c3e50;
+    color: white;
+    border: 1px solid var(--dorado);
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-whatsapp-grande {
+    background: #25d366;
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: 0.4s ease;
+}
+
+.btn-whatsapp-grande:hover {
+    background: #1da851;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* Adaptación para móviles */
+@media (max-width: 768px) {
+    .cotizacion-container {
+        grid-template-columns: 1fr;
+    }
+    .resumen-intencion {
+        padding: 30px;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    .formulario-whatsapp {
+        padding: 30px;
+    }
+}
+
+.formulario-whatsapp label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--dorado);
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#subcategoria-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #1a252f;
+}
+
+#categoria-select, #subcategoria-select {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
