@@ -3,294 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CR Sensores Industriales — Distribución especializada de sensores, conectores y soluciones de detección industrial. Asesoría técnica experta para su operación.">
+    <meta name="theme-color" content="#4a5a6a">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="CR Sensores Industriales">
+    <meta property="og:description" content="Soluciones de detección y sensado inteligente para entornos industriales exigentes.">
+    <meta property="og:image" content="Imagenes/logo/Logo_final.png">
+    <meta property="og:type" content="website">
+
     <title>CR Sensores Industriales</title>
+
+    <!-- Preconexión a recursos externos -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" href="Imagenes/logo/Logo_final.png" as="image">
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 </head>
 <body>
 
     <header>
         <div class="logo-area">
-            <img src="Imagenes/logo/Logo_final.png" alt="CR Sensores" class="header-logo">
+            <img src="Imagenes/logo/Logo_final.png" alt="CR Sensores Industriales" class="header-logo" width="80" height="80">
         </div>
-        <nav>
+        <nav aria-label="Navegación principal">
             <ul>
-                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#" class="active" aria-current="page">Inicio</a></li>
                 <li><a href="#productos-seccion">Productos</a></li>
                 <li>
-					<a href="https://wa.me/3138278238?text=Hola%20CR%20Sensores%2C%20quisiera%20recibir%20asesoría%20sobre%20sus%20soluciones%20de%20detección." 
-					   class="whatsapp-link" 
-					   target="_blank">
-					   <i class="fab fa-whatsapp"></i> Contactanos
-					</a>
-				</li>
+                    <a href="https://wa.me/3138278238?text=Hola%20CR%20Sensores%2C%20quisiera%20recibir%20asesor%C3%ADa%20sobre%20sus%20soluciones%20de%20detecci%C3%B3n."
+                       class="whatsapp-link"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Contactar por WhatsApp">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Contáctanos
+                    </a>
+                </li>
             </ul>
         </nav>
+        <button class="hamburger" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+            <span></span><span></span><span></span>
+        </button>
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" aria-label="Presentación principal">
             <div class="hero-content">
-                <h1>PRECISIÓN <br> INDUSTRIAL, <br> <span class="gold-text">SENSADO INTELIGENTE.</span></h1>
+                <h1>PRECISIÓN <br>INDUSTRIAL, <br><span class="gold-text">SENSADO INTELIGENTE.</span></h1>
                 <a href="#productos-seccion" class="btn-soluciones">VER SOLUCIONES</a>
             </div>
         </section>
 
-        <section class="company-intro">
+        <section class="company-intro" aria-label="Quiénes somos">
             <div class="intro-container">
                 <h2>Distribución especializada en sensores y detección industrial</h2>
-                <p>En <strong>CR Sensores Industriales</strong>, Optimizamos la eficiencia operativa de cada cliente mediante la distribución especializada de soluciones de detección y sensado inteligente. Integramos tecnología de alto desempeño con asesoría técnica experta, acompañando de forma cercana cada etapa del proceso: desde la selección precisa del producto hasta su entrega. Garantizamos disponibilidad, confiabilidad y continuidad operativa en entornos industriales exigentes, convirtiéndonos en un aliado estratégico para aplicaciones críticas.</p>
+                <p>En <strong>CR Sensores Industriales</strong>, optimizamos la eficiencia operativa de cada cliente mediante la distribución especializada de soluciones de detección y sensado inteligente. Integramos tecnología de alto desempeño con asesoría técnica experta, acompañando cada etapa del proceso: desde la selección precisa del producto hasta su entrega. Garantizamos disponibilidad, confiabilidad y continuidad operativa en entornos industriales exigentes.</p>
             </div>
         </section>
-		
-		<section class="marcas-slider">
-    <h2 class="slider-title">Aliados estratégicos</h2>
-    <div class="slider-container">
-        <div class="slider-track">
-            <div class="slide"><img src="Imagenes/marcas/optex.png" alt="Optex"></div>
-            <div class="slide"><img src="Imagenes/marcas/sick.png" alt="Sick"></div>
-            <div class="slide"><img src="Imagenes/marcas/finetek.png" alt="FineTek"></div>
-            <div class="slide"><img src="Imagenes/marcas/scan.png" alt="Scan"></div>
-            <div class="slide"><img src="Imagenes/marcas/julong.png" alt="Julong"></div>
-            <div class="slide"><img src="Imagenes/marcas/riko.png" alt="Riko"></div>
-            <div class="slide"><img src="Imagenes/marcas/pepperl.png" alt="Pepperl & Fuchs"></div>
-            <div class="slide"><img src="Imagenes/marcas/xecro.png" alt="Xecro"></div>
-            <div class="slide"><img src="Imagenes/marcas/omrom.png" alt="Omrom"></div>
-            <div class="slide"><img src="Imagenes/marcas/sensopart.png" alt="Sensopart"></div>
-            <div class="slide"><img src="Imagenes/marcas/ibest.png" alt="I Best"></div>
-            <div class="slide"><img src="Imagenes/marcas/greegoo.png" alt="Greegoo"></div>
-            
-            <div class="slide"><img src="Imagenes/marcas/optex.png" alt="Optex"></div>
-            <div class="slide"><img src="Imagenes/marcas/sick.png" alt="Sick"></div>
-            <div class="slide"><img src="Imagenes/marcas/finetek.png" alt="FineTek"></div>
-            <div class="slide"><img src="Imagenes/marcas/scan.png" alt="Scan"></div>
-            <div class="slide"><img src="Imagenes/marcas/julong.png" alt="Julong"></div>
-            <div class="slide"><img src="Imagenes/marcas/riko.png" alt="Riko"></div>
-            <div class="slide"><img src="Imagenes/marcas/pepperl.png" alt="Pepperl & Fuchs"></div>
-            <div class="slide"><img src="Imagenes/marcas/xecro.png" alt="Xecro"></div>
-            <div class="slide"><img src="Imagenes/marcas/omrom.png" alt="Omrom"></div>
-            <div class="slide"><img src="Imagenes/marcas/sensopart.png" alt="Sensopart"></div>
-            <div class="slide"><img src="Imagenes/marcas/ibest.png" alt="I Best"></div>
-            <div class="slide"><img src="Imagenes/marcas/greegoo.png" alt="Greegoo"></div>        </div>
-    </div>
-</section>
 
-        <section id="productos-seccion" class="products-grid">
-            
-            <div class="product-card clickable" onclick="toggleSubmenu(this)">
+        <section class="marcas-slider" aria-label="Marcas aliadas">
+            <h2 class="slider-title">Aliados Estratégicos</h2>
+            <div class="slider-container" aria-hidden="true">
+                <div class="slider-track" id="slider-track">
+                    <!-- Generado por JS para evitar duplicación manual -->
+                </div>
+            </div>
+        </section>
+
+        <section id="productos-seccion" class="products-grid" aria-label="Catálogo de productos">
+
+            <article class="product-card clickable" onclick="toggleSubmenu(this)" onkeydown="handleCardKey(event, this)" tabindex="0" aria-expanded="false">
                 <div class="card-main-content">
-                    <i class="fas fa-thermometer-half gold-icon"></i>
+                    <i class="fas fa-thermometer-half gold-icon" aria-hidden="true"></i>
                     <div class="info">
-                        <h3>Control de Temperatura <i class="fas fa-chevron-down arrow-icon"></i></h3>
+                        <h3>Control de Temperatura <i class="fas fa-chevron-down arrow-icon" aria-hidden="true"></i></h3>
                         <p>Sistemas de monitoreo y regulación térmica de alta precisión.</p>
                     </div>
                 </div>
-                <ul class="sub-products">
-                    <li><i class="fas fa-caret-right"></i> Termocupla</li>
+                <ul class="sub-products" role="list">
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Termocupla</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="product-card clickable" onclick="toggleSubmenu(this)">
+            <article class="product-card clickable" onclick="toggleSubmenu(this)" onkeydown="handleCardKey(event, this)" tabindex="0" aria-expanded="false">
                 <div class="card-main-content">
-                    <i class="fas fa-barcode gold-icon"></i>
+                    <i class="fas fa-barcode gold-icon" aria-hidden="true"></i>
                     <div class="info">
-                        <h3>Lectoras <i class="fas fa-chevron-down arrow-icon"></i></h3>
+                        <h3>Lectoras <i class="fas fa-chevron-down arrow-icon" aria-hidden="true"></i></h3>
                         <p>Sistemas de visión para identificación y trazabilidad industrial.</p>
                     </div>
                 </div>
-                <ul class="sub-products">
-                    <li><i class="fas fa-caret-right"></i> De Marca</li>
-                    <li><i class="fas fa-caret-right"></i> De Etiqueta</li>
-                    <li><i class="fas fa-caret-right"></i> Inductivos</li>
-                    <li><i class="fas fa-caret-right"></i> Capacitivos</li>
-                    <li><i class="fas fa-caret-right"></i> Posición lineal</li>
-                    <li><i class="fas fa-caret-right"></i> Fotoeléctricos</li>
-                    <li><i class="fas fa-caret-right"></i> Fotoeléctrico con supresión de fondo</li>
-                    <li><i class="fas fa-caret-right"></i> Reflex</li>
-                    <li><i class="fas fa-caret-right"></i> Autoreflex</li>
+                <ul class="sub-products" role="list">
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> De Marca</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> De Etiqueta</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Inductivos</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Capacitivos</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Posición lineal</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Fotoeléctricos</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Fotoeléctrico con supresión de fondo</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Reflex</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Autoreflex</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="product-card clickable" onclick="toggleSubmenu(this)">
+            <article class="product-card clickable" onclick="toggleSubmenu(this)" onkeydown="handleCardKey(event, this)" tabindex="0" aria-expanded="false">
                 <div class="card-main-content">
-                    <i class="fas fa-toggle-on gold-icon"></i>
+                    <i class="fas fa-toggle-on gold-icon" aria-hidden="true"></i>
                     <div class="info">
-                        <h3>Relevadores <i class="fas fa-chevron-down arrow-icon"></i></h3>
+                        <h3>Relevadores <i class="fas fa-chevron-down arrow-icon" aria-hidden="true"></i></h3>
                         <p>Componentes de conmutación confiables para control de potencia.</p>
                     </div>
                 </div>
-                <ul class="sub-products">
-                    <li><i class="fas fa-caret-right"></i> Estado sólido</li>
-                    <li><i class="fas fa-caret-right"></i> Electromecánicos</li>
+                <ul class="sub-products" role="list">
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Estado sólido</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Electromecánicos</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="product-card clickable" onclick="toggleSubmenu(this)">
+            <article class="product-card clickable" onclick="toggleSubmenu(this)" onkeydown="handleCardKey(event, this)" tabindex="0" aria-expanded="false">
                 <div class="card-main-content">
-                    <i class="fas fa-plug gold-icon"></i>
+                    <i class="fas fa-plug gold-icon" aria-hidden="true"></i>
                     <div class="info">
-                        <h3>Cables y Conectores <i class="fas fa-chevron-down arrow-icon"></i></h3>
+                        <h3>Conectores <i class="fas fa-chevron-down arrow-icon" aria-hidden="true"></i></h3>
                         <p>Infraestructura de conexión robusta para señales y alimentación.</p>
                     </div>
                 </div>
-                <ul class="sub-products">
-                    <li><i class="fas fa-caret-right"></i> Conectores con cable</li>
-                    <li><i class="fas fa-caret-right"></i> Conectores para armado</li>
-                    <li><i class="fas fa-caret-right"></i> Conectores M12 y M18</li>
-                    <li><i class="fas fa-caret-right"></i> Conectores rectos</li>
-                    <li><i class="fas fa-caret-right"></i> Conectores acodados a 90°</li>
+                <ul class="sub-products" role="list">
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Conectores con cable</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Conectores para armado</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Conectores M12 y M8</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Conectores rectos</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Conectores acodados a 90°</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="product-card">
+            <article class="product-card">
                 <div class="card-main-content">
-                    <i class="fas fa-calculator gold-icon"></i>
+                    <i class="fas fa-calculator gold-icon" aria-hidden="true"></i>
                     <div class="info">
                         <h3>Contadoras</h3>
                         <p>Dispositivos de conteo preciso en diferentes formatos y voltajes para control de producción.</p>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="product-card clickable" onclick="toggleSubmenu(this)">
+            <article class="product-card clickable" onclick="toggleSubmenu(this)" onkeydown="handleCardKey(event, this)" tabindex="0" aria-expanded="false">
                 <div class="card-main-content">
-                    <i class="fas fa-project-diagram gold-icon"></i>
+                    <i class="fas fa-project-diagram gold-icon" aria-hidden="true"></i>
                     <div class="info">
-                        <h3>Fibra Óptica <i class="fas fa-chevron-down arrow-icon"></i></h3>
+                        <h3>Fibra Óptica <i class="fas fa-chevron-down arrow-icon" aria-hidden="true"></i></h3>
                         <p>Soluciones de transmisión de luz para espacios reducidos y alta velocidad.</p>
                     </div>
                 </div>
-                <ul class="sub-products">
-                    <li><i class="fas fa-caret-right"></i> Cable</li>
-                    <li><i class="fas fa-caret-right"></i> Amplificadores</li>
+                <ul class="sub-products" role="list">
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Cable</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Amplificadores</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="product-card clickable" onclick="toggleSubmenu(this)">
+            <article class="product-card clickable" onclick="toggleSubmenu(this)" onkeydown="handleCardKey(event, this)" tabindex="0" aria-expanded="false">
                 <div class="card-main-content">
-                    <i class="fas fa-water gold-icon"></i>
+                    <i class="fas fa-water gold-icon" aria-hidden="true"></i>
                     <div class="info">
-                        <h3>Sensores de Nivel <i class="fas fa-chevron-down arrow-icon"></i></h3>
+                        <h3>Sensores de Nivel <i class="fas fa-chevron-down arrow-icon" aria-hidden="true"></i></h3>
                         <p>Control preciso de líquidos y sólidos en tanques y depósitos.</p>
                     </div>
                 </div>
-                <ul class="sub-products">
-                    <li><i class="fas fa-caret-right"></i> Por RFA</li>
-                    <li><i class="fas fa-caret-right"></i> Opticos</li>
-                    <li><i class="fas fa-caret-right"></i> Nivel de agua</li>
-                    <li><i class="fas fa-caret-right"></i> Por vibracion general</li>
-                    <li><i class="fas fa-caret-right"></i> Por vibracion tipo SC28 / SC24</li>
+                <ul class="sub-products" role="list">
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Por RFA</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Ópticos</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Nivel de agua</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Por vibración general</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Por vibración tipo SC28 / SC24</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="product-card clickable" onclick="toggleSubmenu(this)">
+            <article class="product-card clickable" onclick="toggleSubmenu(this)" onkeydown="handleCardKey(event, this)" tabindex="0" aria-expanded="false">
                 <div class="card-main-content">
-                    <i class="fas fa-eye gold-icon"></i>
+                    <i class="fas fa-eye gold-icon" aria-hidden="true"></i>
                     <div class="info">
-                        <h3>Sensores Ópticos <i class="fas fa-chevron-down arrow-icon"></i></h3>
+                        <h3>Sensores Ópticos <i class="fas fa-chevron-down arrow-icon" aria-hidden="true"></i></h3>
                         <p>Detección sin contacto mediante tecnología de luz avanzada.</p>
                     </div>
                 </div>
-                <ul class="sub-products">
-                    <li><i class="fas fa-caret-right"></i> Láser</li>
-                    <li><i class="fas fa-caret-right"></i> Infrarrojos</li>
+                <ul class="sub-products" role="list">
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Láser</li>
+                    <li><i class="fas fa-caret-right" aria-hidden="true"></i> Infrarrojos</li>
                 </ul>
-            </div>
+            </article>
 
         </section>
     </main>
 
-    <section class="galeria-sensores">
+    <section class="galeria-sensores" aria-label="Galería de productos">
         <h2 class="galeria-title">Componentes de Alta Gama</h2>
         <div class="galeria-grid">
-            <div class="sensor-item">
-                <img src="Imagenes/sensores/laser.png" alt="Sensor Industrial">
-                <div class="sensor-overlay"><span>Sensor Láser</span></div>
-            </div>
-            <div class="sensor-item">
-                <img src="Imagenes/sensores/conectores.png" alt="Sensor Industrial">
-                <div class="sensor-overlay"><span>Conectores</span></div>
-            </div>
-            <div class="sensor-item"><img src="Imagenes/sensores/capacitivo.png" alt="Sensor"><div class="sensor-overlay"><span>Capacitivo</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/fibra.png" alt="Sensor"><div class="sensor-overlay"><span>Fibra Óptica</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/termocupla.png" alt="Sensor"><div class="sensor-overlay"><span>Termocupla</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/fotoU.png" alt="Sensor"><div class="sensor-overlay"><span>Fotoeléctrico</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/nivel.png" alt="Sensor"><div class="sensor-overlay"><span>Controlador Nivel</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/m12.png" alt="Sensor"><div class="sensor-overlay"><span>Conectores M12</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/contadora.png" alt="Sensor"><div class="sensor-overlay"><span>Contadoras</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/lectora2.png" alt="Sensor"><div class="sensor-overlay"><span>Sensor de Marca</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/inductivo.png" alt="Sensor"><div class="sensor-overlay"><span>Inductivos</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/fotoelectrico2.png" alt="Sensor"><div class="sensor-overlay"><span>Fotoeléctrico</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/lectora3.png" alt="Sensor"><div class="sensor-overlay"><span>Lectora de marca</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/solido.png" alt="Sensor"><div class="sensor-overlay"><span>Relé</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/contadora2.png" alt="Sensor"><div class="sensor-overlay"><span>Contadoras</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/fotoelectrico3.png" alt="Sensor"><div class="sensor-overlay"><span>Lectoras fotoeléctrica</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/laser2.png" alt="Sensor"><div class="sensor-overlay"><span>Sensor laser</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/lectora.png" alt="Sensor"><div class="sensor-overlay"><span>Sensores Lectores</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/fotoelectrico.png" alt="Sensor"><div class="sensor-overlay"><span>Escáner Láser</span></div></div>
-            <div class="sensor-item"><img src="Imagenes/sensores/timer.png" alt="Sensor"><div class="sensor-overlay"><span>Temporizadoras</span></div></div>        </div>
-        <div class="galeria-grid">
-            </div>
-            <button id="btn-ver-mas" class="btn-ver-mas">MOSTRAR MÁS SENSORES</button>
+            <div class="sensor-item"><img src="Imagenes/sensores/laser.png" alt="Sensor láser de precisión" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Sensor Láser</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/conectores.png" alt="Conectores industriales" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Conectores</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/capacitivo.png" alt="Sensor capacitivo" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Capacitivo</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/fibra.png" alt="Cable de fibra óptica industrial" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Fibra Óptica</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/termocupla.png" alt="Termocupla industrial" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Termocupla</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/fotoU.png" alt="Sensor fotoeléctrico tipo U" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Fotoeléctrico</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/nivel.png" alt="Controlador de nivel" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Controlador Nivel</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/m12.png" alt="Conectores M12" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Conectores M12</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/contadora.png" alt="Contadora industrial" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Contadoras</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/lectora2.png" alt="Sensor de marca" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Sensor de Marca</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/inductivo.png" alt="Sensor inductivo" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Inductivos</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/fotoelectrico2.png" alt="Sensor fotoeléctrico" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Fotoeléctrico</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/lectora3.png" alt="Lectora de marca industrial" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Lectora de marca</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/solido.png" alt="Relé de estado sólido" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Relé</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/contadora2.png" alt="Contador digital" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Contadoras</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/fotoelectrico3.png" alt="Lectora fotoeléctrica" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Lectora fotoeléctrica</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/laser2.png" alt="Sensor láser de distancia" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Sensor Láser</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/lectora.png" alt="Sensor lector de códigos" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Sensores Lectores</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/fotoelectrico.png" alt="Escáner láser industrial" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Escáner Láser</span></div></div>
+            <div class="sensor-item"><img src="Imagenes/sensores/timer.png" alt="Temporizador industrial" loading="lazy" width="180" height="180"><div class="sensor-overlay"><span>Temporizadoras</span></div></div>
+        </div>
+        <button id="btn-ver-mas" class="btn-ver-mas" aria-expanded="false">MOSTRAR MÁS SENSORES</button>
     </section>
 
-	<section class="cotizacion-final">
-    <div class="cotizacion-container">
-        <div class="resumen-intencion">
-            <h2>Soluciones a su Medida</h2>
-            <p>En <strong>CR Sensores Industriales</strong> entendemos que cada proceso es único. Nuestro compromiso es brindarle la asesoría técnica necesaria para seleccionar el equipo ideal que garantice la continuidad de su operación.</p>
-        </div>
+    <section class="cotizacion-final" aria-label="Solicitar cotización">
+        <div class="cotizacion-container">
+            <div class="resumen-intencion">
+                <h2>Soluciones a su Medida</h2>
+                <p>En <strong>CR Sensores Industriales</strong> entendemos que cada proceso es único. Nuestro compromiso es brindarle la asesoría técnica necesaria para seleccionar el equipo ideal que garantice la continuidad de su operación.</p>
+            </div>
 
-        <div class="formulario-whatsapp">
-            <h3>¿Cuál producto te interesa? Escríbenos y te asesoramos sin compromiso.</h3>
-            
-            <div class="selector-box">
-                <label>Tipo de sensor:</label>
-                <select id="categoria-select" onchange="actualizarSubcategorias()">
-                    <option value="" disabled selected>-- Seleccione Categoría --</option>
-                    <option value="Control de Temperatura">Control de Temperatura</option>
-                    <option value="Lectoras">Lectoras</option>
-                    <option value="Relevadores">Relevadores</option>
-                    <option value="Cables y Conectores">Cables y Conectores</option>
-                    <option value="Fibra Óptica">Fibra Óptica</option>
-                    <option value="Sensores de Nivel">Sensores de Nivel</option>
-                    <option value="Sensores Ópticos">Sensores Ópticos</option>
-                </select>
+            <div class="formulario-whatsapp">
+                <h3>¿Cuál producto te interesa? Escríbenos y te asesoramos sin compromiso.</h3>
 
-                <label>Tecnología:</label>
-                <select id="subcategoria-select" disabled>
-                    <option value="">-- Primero elija una categoría --</option>
-                </select>
-                
-                <button onclick="enviarCotizacionAvanzada()" class="btn-whatsapp-grande">
-                    <i class="fab fa-whatsapp"></i> Quiero Asesoría Personalizada
-                </button>
+                <div class="selector-box">
+                    <label for="categoria-select">Tipo de sensor:</label>
+                    <select id="categoria-select" onchange="actualizarSubcategorias()" aria-required="true">
+                        <option value="" disabled selected>-- Seleccione Categoría --</option>
+                        <option value="Control de Temperatura">Control de Temperatura</option>
+                        <option value="Lectoras">Lectoras</option>
+                        <option value="Relevadores">Relevadores</option>
+                        <option value="Conectores">Conectores</option>
+                        <option value="Fibra Óptica">Fibra Óptica</option>
+                        <option value="Sensores de Nivel">Sensores de Nivel</option>
+                        <option value="Sensores Ópticos">Sensores Ópticos</option>
+                    </select>
+
+                    <label for="subcategoria-select">Tecnología:</label>
+                    <select id="subcategoria-select" disabled aria-required="true" aria-disabled="true">
+                        <option value="">-- Primero elija una categoría --</option>
+                    </select>
+
+                    <button onclick="enviarCotizacionAvanzada()" class="btn-whatsapp-grande" type="button">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Quiero Asesoría Personalizada
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script>
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-brand">CR Sensores Industriales &copy; 2026</p>
+            <p class="footer-tagline">Expertos en detección industrial · @CRSensors</p>
+            <a href="https://wa.me/3138278238" class="footer-contact" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> +57 313 827 8238
+            </a>
+        </div>
+    </footer>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/3138278238?text=Hola%20CR%20Sensores%2C%20estoy%20interesado%20en%20comprar%20ahora%20y%20necesito%20asesor%C3%ADa."
+       class="whatsapp-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Comprar ahora por WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="float-text">¡Quiero comprar ahora!</span>
+    </a>
+
+    <script>
+    // ─── Datos de productos ───────────────────────────────────────────────────
     const mapeoProductos = {
         "Control de Temperatura": ["Termocupla"],
         "Lectoras": ["De Marca", "De Etiqueta", "Inductivos", "Capacitivos", "Posición lineal", "Fotoeléctricos", "Supresión de fondo", "Reflex", "Autoreflex"],
         "Relevadores": ["Estado sólido", "Electromecánicos"],
-        "Cables y Conectores": ["Conectores con cable", "Conectores para armado", "Conectores M12 y M18", "Rectos", "Acodados 90°"],
+        "Conectores": ["Conectores con cable", "Conectores para armado", "Conectores M12 y M8", "Rectos", "Acodados 90°"],
         "Fibra Óptica": ["Cable", "Amplificadores"],
-        "Sensores de Nivel": ["Por RFA", "Opticos","Nivel de agua","Por vibracion general","Por vibracion tipo SC28 / SC24"],
+        "Sensores de Nivel": ["Por RFA", "Ópticos", "Nivel de agua", "Por vibración general", "Por vibración tipo SC28 / SC24"],
         "Sensores Ópticos": ["Láser", "Infrarrojos"]
     };
 
+    const marcas = [
+        { src: "Imagenes/marcas/optex.png",   alt: "Optex" },
+        { src: "Imagenes/marcas/sick.png",    alt: "Sick" },
+        { src: "Imagenes/marcas/finetek.png", alt: "FineTek" },
+        { src: "Imagenes/marcas/scan.png",    alt: "Scan" },
+        { src: "Imagenes/marcas/julong.png",  alt: "Julong" },
+        { src: "Imagenes/marcas/riko.png",    alt: "Riko" },
+        { src: "Imagenes/marcas/pepperl.png", alt: "Pepperl & Fuchs" },
+        { src: "Imagenes/marcas/xecro.png",   alt: "Xecro" },
+        { src: "Imagenes/marcas/omrom.png",   alt: "Omron" },
+        { src: "Imagenes/marcas/sensopart.png", alt: "Sensopart" },
+        { src: "Imagenes/marcas/ibest.png",   alt: "I Best" },
+        { src: "Imagenes/marcas/greegoo.png", alt: "Greegoo" }
+    ];
+
+    // ─── Slider de marcas generado por JS ────────────────────────────────────
+    (function buildSlider() {
+        const track = document.getElementById('slider-track');
+        if (!track) return;
+        // Duplicamos para el loop infinito
+        [...marcas, ...marcas].forEach(({ src, alt }) => {
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = alt;
+            img.loading = 'lazy';
+            img.width = 120;
+            img.height = 60;
+            slide.appendChild(img);
+            track.appendChild(slide);
+        });
+    })();
+
+    // ─── Tarjetas de productos ────────────────────────────────────────────────
+    function toggleSubmenu(card) {
+        const isActive = card.classList.toggle('active');
+        card.setAttribute('aria-expanded', isActive);
+    }
+
+    function handleCardKey(event, card) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggleSubmenu(card);
+        }
+    }
+
+    // ─── Cotización por WhatsApp ──────────────────────────────────────────────
     function actualizarSubcategorias() {
         const catSelect = document.getElementById('categoria-select');
         const subSelect = document.getElementById('subcategoria-select');
         const categoria = catSelect.value;
 
-        // Limpiar subcategorías
         subSelect.innerHTML = '<option value="" disabled selected>-- Seleccione Derivación --</option>';
-        
+
         if (mapeoProductos[categoria]) {
             subSelect.disabled = false;
+            subSelect.removeAttribute('aria-disabled');
             mapeoProductos[categoria].forEach(sub => {
                 const option = document.createElement('option');
                 option.value = sub;
@@ -310,65 +369,55 @@
             return;
         }
 
-        const mensaje = encodeURIComponent(`Hola CR Sensores, solicito cotización para:\nCategoría: ${cat}\nEspecificación: ${sub}`);
-        window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank');
+        const mensaje = encodeURIComponent(
+            `Hola CR Sensores, solicito cotización para:\nCategoría: ${cat}\nEspecificación: ${sub}`
+        );
+        window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank', 'noopener,noreferrer');
     }
-</script>
 
-    <footer>
-        <p>Síguenos: @CRSensors - Expertos en detección industrial &copy; 2026</p>
-    </footer>
+    // ─── Galería: Mostrar más / menos ────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('btn-ver-mas');
+        const extraSensors = document.querySelectorAll('.galeria-grid .sensor-item:nth-child(n+6)');
+        const HIDDEN = 'none';
+        const VISIBLE = 'flex';
 
-    <script>
-        function toggleSubmenu(card) {
-            card.classList.toggle('active');
-        }
-    </script>
+        extraSensors.forEach(s => { s.style.display = HIDDEN; });
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('btn-ver-mas');
-            // Seleccionamos desde el 5to elemento en adelante (índice n+5)
-            const extraSensors = document.querySelectorAll('.galeria-grid .sensor-item:nth-child(n+6)');
-            
-            // Ocultar inicialmente
-            extraSensors.forEach(sensor => {
-                sensor.style.display = 'none';
-            });
+        btn.addEventListener('click', () => {
+            const isHidden = extraSensors[0].style.display === HIDDEN;
 
-            btn.addEventListener('click', function() {
-                // Verificamos si actualmente están ocultos
-                const isHidden = extraSensors[0].style.display === 'none';
-
-                extraSensors.forEach((sensor, index) => {
-                    if (isHidden) {
-                        sensor.style.display = 'flex';
-                        sensor.style.animation = `reveal 0.4s ease forwards ${index * 0.05}s`;
-                        btn.innerText = 'MOSTRAR MENOS';
-                        btn.classList.add('btn-ver-mas-active');
-                    } else {
-                        sensor.style.display = 'none';
-                        btn.innerText = 'MOSTRAR MÁS SENSORES';
-                        btn.classList.remove('btn-ver-mas-active');
-                    }
-                });
-
-                // Si se ocultan, volver arriba de la galería para no perderse
-                if (!isHidden) {
-                    document.querySelector('.galeria-sensores').scrollIntoView({ behavior: 'smooth' });
+            extraSensors.forEach((sensor, i) => {
+                if (isHidden) {
+                    sensor.style.display = VISIBLE;
+                    sensor.style.animation = `reveal 0.4s ease forwards ${i * 0.05}s`;
+                } else {
+                    sensor.style.display = HIDDEN;
+                    sensor.style.animation = '';
                 }
             });
-        });
-        </script>
 
-    <a href="https://wa.me/3138278238?text=Hola%20CR%20Sensores%2C%20estoy%20interesado%20en%20comprar%20ahora%20y%20necesito%20asesoría." 
-   class="whatsapp-float" 
-   target="_blank" 
-   rel="noopener noreferrer"
-   title="Comprar ahora">
-    <i class="fab fa-whatsapp"></i>
-    <span class="float-text">¡Quiero comprar ahora!</span>
-</a>
+            btn.textContent = isHidden ? 'MOSTRAR MENOS' : 'MOSTRAR MÁS SENSORES';
+            btn.setAttribute('aria-expanded', isHidden);
+            btn.classList.toggle('btn-ver-mas-active', isHidden);
+
+            if (!isHidden) {
+                document.querySelector('.galeria-sensores').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // ─── Menú hamburguesa para móvil ─────────────────────────────────────
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+        if (toggle && nav) {
+            toggle.addEventListener('click', () => {
+                const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', !expanded);
+                nav.classList.toggle('nav-open');
+            });
+        }
+    });
+    </script>
+
 </body>
 </html>
-

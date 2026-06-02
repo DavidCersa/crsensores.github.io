@@ -1,14 +1,25 @@
-/* EFECTO DE DESPLAZAMIENTO SUAVE */
-html {
-    scroll-behavior: smooth;
+/* ═══════════════════════════════════════════════════
+   VARIABLES Y RESET
+═══════════════════════════════════════════════════ */
+:root {
+    --azul-fondo:     #4a5a6a;
+    --azul-card:      rgba(58, 75, 92, 0.85);
+    --azul-card-full: rgba(58, 75, 92, 1);
+    --dorado:         #d4af37;
+    --dorado-brillante: #f9e27d;
+    --texto:          #e0e6ed;
+    --sombra-dorada:  rgba(212, 175, 55, 0.3);
+    --transicion:     0.3s ease;
 }
 
-:root {
-    --azul-fondo: #4a5a6a;
-    --azul-card: rgba(58, 75, 92, 0.85);
-    --dorado: #d4af37;
-    --dorado-brillante: #f9e27d;
-    --texto: #e0e6ed;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -18,123 +29,304 @@ body {
     background-color: var(--azul-fondo);
     color: var(--texto);
     min-height: 100vh;
-    position: relative;
     overflow-x: hidden;
 }
 
-/* MARCA DE AGUA ACTUALIZADA */
+/* ═══════════════════════════════════════════════════
+   MARCA DE AGUA
+═══════════════════════════════════════════════════ */
 body::after {
     content: "";
-    background-image: url('Imagenes/logo/Logo_final.png'); 
+    background-image: url('Imagenes/logo/Logo_final.png');
     background-position: center center;
     background-repeat: no-repeat;
-    
-    /* TAMAÑO AJUSTADO: Reducido de 70vw a 35vw para PC */
-    background-size: 50vw; 
-    /* OPACIDAD: Ligeramente más transparente para que sea sutil */
-    opacity: 0.2; 
+    background-size: 50vw;
+    opacity: 0.15;
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    inset: 0;
     z-index: -1;
     pointer-events: none;
-    /* REDONDEADO: Aplica un borde redondeado sutil a la imagen de fondo */
     border-radius: 20%;
-	overflow: hidden;	
 }
 
-/* Ajuste móvil para el fondo */
 @media (max-width: 768px) {
     body::after {
-        background-size: 70vw; /* El fondo sigue siendo grande en móviles */
-        border-radius: 10px;    /* Redondeado menor en pantallas pequeñas */
+        background-size: 80vw;
+        border-radius: 10px;
     }
 }
 
-
-/* HEADER CON LOGO */
+/* ═══════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════ */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%; /* Un poco más de espacio lateral */
+    padding: 10px 5%;
     position: sticky;
     top: 0;
     background: rgba(74, 90, 106, 0.98);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 100;
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .header-logo {
-    height: 80px; /* Ajuste del tamaño del logo en el menú */
+    height: 80px;
     width: auto;
-	opacity: 0.7;
-	border-radius:10%;
+    opacity: 0.75;
+    border-radius: 10%;
+    transition: opacity var(--transicion);
 }
 
-/* Contenedor principal de la navegación */
-nav ul { 
-    display: flex; 
-    list-style: none; 
-    gap: 15px; /* Reducimos un poco el gap para que quepan mejor en pantallas medianas */
-    margin: 0; 
-    padding: 0; 
-    align-items: center; /* Alineación vertical perfecta */
+.header-logo:hover {
+    opacity: 1;
 }
 
-/* Estilo base para TODOS los enlaces del menú */
-nav a { 
-    text-decoration: none; 
-    color: white; 
-    font-weight: 600; 
-    transition: 0.3s; 
-    padding: 9px 18px; /* Mismo padding que el botón de WhatsApp */
-    border-radius: 25px; /* Bordes redondeados para todos */
+/* Navegación */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: background var(--transicion), color var(--transicion), border-color var(--transicion);
+    padding: 9px 18px;
+    border-radius: 25px;
     display: flex;
     align-items: center;
-    border: 1px solid transparent; /* Evita saltos visuales al hacer hover */
+    gap: 6px;
+    border: 1px solid transparent;
 }
 
-/* Efecto hover para Inicio y Productos */
-nav a:not(.whatsapp-link):hover {
-    background: rgba(212, 175, 55, 0.1); /* Fondo dorado muy sutil */
+nav a:not(.whatsapp-link):hover,
+nav a:not(.whatsapp-link):focus-visible {
+    background: rgba(212, 175, 55, 0.1);
     color: var(--dorado);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-color: rgba(212, 175, 55, 0.3);
+    outline: none;
 }
 
-/* El botón activo (Inicio) */
-.active { 
-    color: var(--dorado) !important; 
-    border: 1px solid rgba(212, 175, 55, 0.5);
+.active {
+    color: var(--dorado) !important;
+    border-color: rgba(212, 175, 55, 0.5);
     background: rgba(212, 175, 55, 0.05);
 }
 
-/* Ajuste específico para WhatsApp para que mantenga su color pero mismo tamaño */
-.whatsapp-link { 
-    background: #25d366; 
-    color: white !important; 
-    gap: 8px;
+.whatsapp-link {
+    background: #25d366;
+    color: white !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.whatsapp-link:hover { 
-    background: #128c7e; 
+.whatsapp-link:hover,
+.whatsapp-link:focus-visible {
+    background: #128c7e;
     transform: scale(1.05);
-}
-.whatsapp-link i {
-    font-size: 1.2rem;
+    outline: none;
 }
 
-/* Hero & Intro */
-.hero { padding: 80px 8% 40px; text-align: right; position: relative; z-index: 10; }
-.hero-content h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; }
-.gold-text { color: var(--dorado-brillante); }
-.btn-soluciones { display: inline-block; padding: 12px 35px; border: 2px solid var(--dorado); color: var(--dorado); text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s; }
+/* Hamburguesa (solo móvil) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
 
-.company-intro { padding: 30px 8%; display: flex; justify-content: center; position: relative; z-index: 10; }
-.intro-container { max-width: 960px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); padding: 30px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15); text-align: center; }
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dorado);
+    border-radius: 2px;
+    transition: transform var(--transicion), opacity var(--transicion);
+}
 
-/* GRID DE PRODUCTOS */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+
+    nav.nav-open {
+        max-height: 300px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0 15px;
+        gap: 5px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+.hero {
+    padding: 90px 8% 50px;
+    text-align: right;
+    position: relative;
+    z-index: 10;
+    animation: heroEntrada 0.8s ease both;
+}
+
+@keyframes heroEntrada {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.gold-text {
+    color: var(--dorado-brillante);
+}
+
+.btn-soluciones {
+    display: inline-block;
+    padding: 14px 40px;
+    border: 2px solid var(--dorado);
+    color: var(--dorado);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background var(--transicion), color var(--transicion), box-shadow var(--transicion);
+    letter-spacing: 0.5px;
+}
+
+.btn-soluciones:hover,
+.btn-soluciones:focus-visible {
+    background: var(--dorado);
+    color: #1a2530;
+    box-shadow: 0 0 20px var(--sombra-dorada);
+    outline: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   INTRO EMPRESA
+═══════════════════════════════════════════════════ */
+.company-intro {
+    padding: 30px 8%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.intro-container {
+    max-width: 960px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    padding: 35px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    text-align: center;
+    line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════════
+   SLIDER DE MARCAS
+═══════════════════════════════════════════════════ */
+.marcas-slider {
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.slider-title {
+    color: var(--dorado-brillante);
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    background: rgba(58, 75, 92, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 20px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    /* Pausa al pasar el mouse */
+}
+
+.slider-container:hover .slider-track {
+    animation-play-state: paused;
+}
+
+.slider-track {
+    display: flex;
+    /* El ancho se establece desde JS según la cantidad de slides */
+    animation: scrollLateral 40s linear infinite;
+    will-change: transform;
+}
+
+.slide {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.slide img {
+    height: 55px;
+    width: auto;
+    max-width: 90%;
+    object-fit: contain;
+    transition: transform var(--transicion), filter var(--transicion);
+    filter: brightness(0.9);
+}
+
+.slide img:hover {
+    transform: scale(1.12);
+    filter: brightness(1);
+}
+
+@keyframes scrollLateral {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Siempre -50% porque duplicamos los slides */
+}
+
+@media (max-width: 768px) {
+    .slide { width: 150px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   GRID DE PRODUCTOS
+═══════════════════════════════════════════════════ */
 .products-grid {
     display: flex;
     justify-content: center;
@@ -145,7 +337,7 @@ nav a:not(.whatsapp-link):hover {
     margin: 0 auto;
     position: relative;
     z-index: 10;
-    scroll-margin-top: 100px;
+    scroll-margin-top: 110px;
 }
 
 .product-card {
@@ -157,13 +349,25 @@ nav a:not(.whatsapp-link):hover {
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease;
     overflow: hidden;
-    max-height: 140px; /* Altura para mostrar solo el inicio */
+    max-height: 140px;
 }
 
-.product-card.clickable { cursor: pointer; }
+.product-card.clickable {
+    cursor: pointer;
+}
+
+.product-card.clickable:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.product-card.clickable:focus-visible {
+    outline: 2px solid var(--dorado);
+    outline-offset: 3px;
+}
 
 .card-main-content {
     display: flex;
@@ -172,250 +376,71 @@ nav a:not(.whatsapp-link):hover {
     width: 100%;
 }
 
-.product-card h3 { margin: 0; font-size: 1.1rem; color: var(--dorado-brillante); display: flex; align-items: center; justify-content: space-between; width: 100%; }
-.gold-icon { font-size: 2rem; color: var(--dorado); }
-.arrow-icon { font-size: 0.8rem; transition: transform 0.3s; }
-
-/* Estilos Desplegables */
-.sub-products {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0 0 45px;
-    display: none;
-    border-left: 2px solid var(--dorado);
-    padding-left: 15px;
+.product-card h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--dorado-brillante);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.sub-products li { font-size: 0.9rem; color: #fff; margin-bottom: 8px; opacity: 0.9; }
+.gold-icon {
+    font-size: 2rem;
+    color: var(--dorado);
+    flex-shrink: 0;
+}
+
+.arrow-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+}
+
+/* Sub-productos desplegables */
+.sub-products {
+    list-style: none;
+    padding: 0 0 0 15px;
+    margin: 18px 0 0 45px;
+    display: none;
+    border-left: 2px solid var(--dorado);
+}
+
+.sub-products li {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
 
 .product-card.active {
-    max-height: 600px; /* Se expande para mostrar la lista larga */
-    background: rgba(58, 75, 92, 1);
+    max-height: 600px;
+    background: var(--azul-card-full);
     border-color: var(--dorado);
 }
 
-.product-card.active .sub-products { display: block; animation: fadeIn 0.4s ease; }
-.product-card.active .arrow-icon { transform: rotate(180deg); }
+.product-card.active .sub-products {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+.product-card.active .arrow-icon {
+    transform: rotate(180deg);
+}
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
-
 @media (max-width: 768px) {
-    header { flex-direction: column; gap: 15px; }
-    .hero-content h1 { font-size: 2.2rem; }
     .product-card { width: 100%; }
 }
 
-/* SECCIÓN MARCAS SLIDER */
-.marcas-slider {
-    padding: 40px 0;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-.slider-title {
-    color: var(--dorado-brillante);
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.slider-container {
-    width: 100%;
-    overflow: hidden; /* Oculta lo que sale del cuadro */
-    background: rgba(58, 75, 92, 0.4);
-    backdrop-filter: blur(5px);
-    padding: 20px 0;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.slider-track {
-    display: flex;
-    width: calc(250px * 26); /* Ancho de imagen (250px) x total de imágenes (13x2) */
-    animation: scrollLateral 40s linear infinite;
-}
-
-.slide {
-    width: 250px;
-    flex-shrink: 0; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 15px; /* Aumentamos un poco el espacio entre marcas */
-    overflow: hidden; /* Corta cualquier desborde visual si existiera */
-}
-
-.slide img {
-    height: 60px; 
-    width: auto;
-    /* NUEVOS AJUSTES */
-    max-width: 90%;      /* Evita que imágenes anchas toquen los bordes */
-    object-fit: contain; /* Mantiene la proporción sin deformar */
-    filter: none; 
-    transition: 0.3s;
-    opacity: 1; 
-}
-
-/* Opcional: Si quieres que al pasar el mouse resalten un poco más */
-.slide img:hover {
-    transform: scale(1.1); /* Crece un 10% al pasar el mouse */
-    opacity: 1;
-}
-
-/* Animación de desplazamiento */
-@keyframes scrollLateral {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-250px * 13)); } /* Se desplaza la mitad exacta */
-}
-
-/* Ajuste móvil */
-@media (max-width: 768px) {
-    @keyframes scrollLateral {
-        100% { transform: translateX(calc(-150px * 13)); }
-    }
-    .slide { 
-        width: 160px; /* Ancho suficiente para que no se toquen */
-    }
-    .slider-track { 
-        /* Re-calculamos el ancho total para móviles basado en el nuevo ancho del slide */
-        width: calc(160px * 26); 
-    }
-    @keyframes scrollLateral {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-160px * 13)); }
-    }
-}
-
-/* ESTILOS SECCIÓN COTIZACIÓN FINAL */
-.cotizacion-final {
-    padding: 60px 8%;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 10;
-}
-
-.cotizacion-container {
-    max-width: 1200px; /* Igual al ancho del grid de productos */
-    width: 100%;
-    background: var(--azul-card);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 25px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-.resumen-intencion {
-    padding: 50px;
-    background: rgba(212, 175, 55, 0.03);
-    border-right: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.resumen-intencion h2 {
-    color: var(--dorado-brillante);
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.formulario-whatsapp {
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.selector-box {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-#producto-interes {
-    padding: 15px;
-    background: #2c3e50;
-    color: white;
-    border: 1px solid var(--dorado);
-    border-radius: 10px;
-    font-size: 1rem;
-    outline: none;
-    cursor: pointer;
-}
-
-.btn-whatsapp-grande {
-    background: #25d366;
-    color: white;
-    border: none;
-    padding: 18px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    transition: 0.4s ease;
-}
-
-.btn-whatsapp-grande:hover {
-    background: #1da851;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-}
-
-/* Adaptación para móviles */
-@media (max-width: 768px) {
-    .cotizacion-container {
-        grid-template-columns: 1fr;
-    }
-    .resumen-intencion {
-        padding: 30px;
-        border-right: none;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    }
-    .formulario-whatsapp {
-        padding: 30px;
-    }
-}
-
-.formulario-whatsapp label {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--dorado);
-    margin-bottom: 5px;
-    margin-top: 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-#subcategoria-select:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: #1a252f;
-}
-
-#categoria-select, #subcategoria-select {
-    width: 100%;
-    padding: 12px;
-    background: #2c3e50;
-    color: white;
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-/* ESTILOS GALERÍA DE SENSORES */
+/* ═══════════════════════════════════════════════════
+   GALERÍA DE SENSORES
+═══════════════════════════════════════════════════ */
 .galeria-sensores {
     padding: 60px 8%;
     text-align: center;
@@ -449,7 +474,8 @@ footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease, background 0.4s ease;
+    animation: reveal 0.6s ease backwards;
 }
 
 .sensor-item img {
@@ -459,33 +485,31 @@ footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
     transition: transform 0.5s ease;
 }
 
-/* Efecto Hover */
 .sensor-item:hover {
     border-color: var(--dorado);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 20px var(--sombra-dorada);
     transform: translateY(-5px);
     background: rgba(58, 75, 92, 0.9);
 }
 
 .sensor-item:hover img {
-    transform: scale(1.15);
+    transform: scale(1.12);
 }
 
-/* Overlay con el nombre del sensor */
 .sensor-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    padding: 10px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 10px 8px 8px;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .sensor-overlay span {
     color: var(--dorado-brillante);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: bold;
 }
 
@@ -493,130 +517,312 @@ footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
     opacity: 1;
 }
 
-/* Animación de entrada suave para la galería */
-.sensor-item {
-    animation: reveal 0.8s ease backwards;
-}
-
+/* Animación de entrada (solo la definición final, sin duplicados) */
 @keyframes reveal {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
 }
 
-/* Retraso en la animación para cada item (opcional para efecto cascada) */
-.sensor-item:nth-child(n) { animation-delay: calc(0.05s * n); }
-
-/* Ajuste móvil */
-@media (max-width: 768px) {
-    .galeria-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular */
-        gap: 10px;
-    }
-}
+/* Retrasos escalonados para efecto cascada (primeros 10) */
+.sensor-item:nth-child(1)  { animation-delay: 0.05s; }
+.sensor-item:nth-child(2)  { animation-delay: 0.10s; }
+.sensor-item:nth-child(3)  { animation-delay: 0.15s; }
+.sensor-item:nth-child(4)  { animation-delay: 0.20s; }
+.sensor-item:nth-child(5)  { animation-delay: 0.25s; }
 
 /* Botón Ver Más */
 .btn-ver-mas {
     margin-top: 30px;
-    padding: 12px 30px;
+    padding: 12px 32px;
     background: transparent;
     color: var(--dorado);
     border: 2px solid var(--dorado);
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background var(--transicion), color var(--transicion), box-shadow var(--transicion);
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-size: 0.9rem;
 }
 
-.btn-ver-mas:hover {
+.btn-ver-mas:hover,
+.btn-ver-mas:focus-visible {
     background: var(--dorado);
     color: var(--azul-fondo);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 15px var(--sombra-dorada);
+    outline: none;
 }
 
 .btn-ver-mas-active {
     background: rgba(212, 175, 55, 0.2);
 }
 
-/* Ajuste de visibilidad para la animación */
-@keyframes reveal {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-/* En móviles, podrías querer que el grid se vea distinto al expandirse */
 @media (max-width: 768px) {
-    .galeria-grid .sensor-item:nth-child(n+5) {
-        display: none; /* Asegura que se oculten por defecto en carga */
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 }
 
-/* BOTÓN FLOTANTE WHATSAPP */
+/* ═══════════════════════════════════════════════════
+   SECCIÓN COTIZACIÓN
+═══════════════════════════════════════════════════ */
+.cotizacion-final {
+    padding: 60px 8%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.cotizacion-container {
+    max-width: 1200px;
+    width: 100%;
+    background: var(--azul-card);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.resumen-intencion {
+    padding: 50px;
+    background: rgba(212, 175, 55, 0.03);
+    border-right: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.resumen-intencion h2 {
+    color: var(--dorado-brillante);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.resumen-intencion p {
+    line-height: 1.7;
+}
+
+.formulario-whatsapp {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario-whatsapp h3 {
+    margin-top: 0;
+    color: var(--dorado-brillante);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.formulario-whatsapp label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--dorado);
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.selector-box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#categoria-select,
+#subcategoria-select {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--transicion);
+}
+
+#categoria-select:focus,
+#subcategoria-select:focus {
+    border-color: var(--dorado);
+}
+
+#subcategoria-select:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: #1a252f;
+}
+
+.btn-whatsapp-grande {
+    margin-top: 15px;
+    background: #25d366;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background var(--transicion), transform var(--transicion), box-shadow var(--transicion);
+}
+
+.btn-whatsapp-grande:hover,
+.btn-whatsapp-grande:focus-visible {
+    background: #1da851;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .cotizacion-container {
+        grid-template-columns: 1fr;
+    }
+
+    .resumen-intencion {
+        padding: 30px;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .formulario-whatsapp {
+        padding: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+footer {
+    padding: 40px 8%;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 40px;
+    text-align: center;
+}
+
+.footer-brand {
+    margin: 0;
+    font-weight: 600;
+    color: var(--dorado-brillante);
+    font-size: 0.95rem;
+}
+
+.footer-tagline {
+    margin: 0;
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+.footer-contact {
+    color: #25d366;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity var(--transicion);
+}
+
+.footer-contact:hover {
+    opacity: 0.8;
+}
+
+/* ═══════════════════════════════════════════════════
+   BOTÓN FLOTANTE WHATSAPP
+═══════════════════════════════════════════════════ */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #25d366; /* Verde oficial WhatsApp */
-    color: #FFF;
+    background-color: #25d366;
+    color: #fff;
     border-radius: 50px;
-    text-align: center;
     font-size: 24px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     z-index: 999;
     display: flex;
     align-items: center;
     padding: 12px 20px;
     text-decoration: none;
-    transition: all 0.3s ease;
-    border: 2px solid var(--dorado); /* Borde dorado para conectar con tu marca */
+    border: 2px solid var(--dorado);
+    animation: pulseGold 2.5s infinite;
+    transition: transform var(--transicion), background-color var(--transicion);
 }
 
 .whatsapp-float i {
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .float-text {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     margin-left: 10px;
     white-space: nowrap;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Efectos */
-.whatsapp-float:hover {
-    transform: scale(1.1);
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+    transform: scale(1.08);
     background-color: #128c7e;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); /* Resplandor dorado al pasar el mouse */
+    box-shadow: 0 6px 20px var(--sombra-dorada);
+    outline: none;
 }
 
-/* Responsive: En móviles muy pequeños ocultamos el texto para que no tape la pantalla */
+@keyframes pulseGold {
+    0%   { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7), 0 4px 15px rgba(0,0,0,0.4); }
+    70%  { box-shadow: 0 0 0 14px rgba(212, 175, 55, 0), 0 4px 15px rgba(0,0,0,0.4); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), 0 4px 15px rgba(0,0,0,0.4); }
+}
+
 @media (max-width: 480px) {
-    .float-text {
-        display: none;
-    }
+    .float-text { display: none; }
+
     .whatsapp-float {
-        padding: 15px;
-        right: 20px;
-        bottom: 20px;
-        border-radius: 50%; /* Se vuelve circular en móviles */
+        padding: 14px;
+        right: 18px;
+        bottom: 18px;
+        border-radius: 50%;
     }
 }
 
-/* Animación de entrada para llamar la atención */
-@keyframes pulse-gold {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+/* ═══════════════════════════════════════════════════
+   UTILIDADES DE ACCESIBILIDAD
+═══════════════════════════════════════════════════ */
+:focus-visible {
+    outline: 2px solid var(--dorado);
+    outline-offset: 3px;
 }
 
-.whatsapp-float {
-    animation: pulse-gold 2s infinite;
+/* Respeta preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }
