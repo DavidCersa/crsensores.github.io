@@ -327,61 +327,82 @@
         });
 
         // ─── Drag / swipe táctil ──────────────────────────────────────────────
-        // Solo activo en dispositivos táctiles para no interferir con el hover de PC
-        const container = track.parentElement;
         let isDragging = false;
         let startX = 0;
-        let currentOffset = 0;  // offset acumulado por el usuario
-        let animOffset = 0;     // posición donde estaba la animación al tocar
+        let dragOffset = 0;   // offset manual acumulado durante el drag
+        let baseOffset = 0;   // posición del track al inicio del touch
 
-        /** Lee la posición translateX actual del track (set por la animación CSS) */
-        function getAnimatedX() {
-            const style = window.getComputedStyle(track);
-            const matrix = new DOMMatrix(style.transform);
-            return matrix.m41; // translateX en px
+        /** Lee la posición translateX real del track en cualquier momento */
+        function getTranslateX() {
+            const matrix = new DOMMatrix(window.getComputedStyle(track).transform);
+            return matrix.m41;
+        }
+
+        /** Genera un keyframe único para reanudar la animación sin saltos */
+        let keyframeStyleTag = document.getElementById('dynamic-slider-kf');
+        if (!keyframeStyleTag) {
+            keyframeStyleTag = document.createElement('style');
+            keyframeStyleTag.id = 'dynamic-slider-kf';
+            document.head.appendChild(keyframeStyleTag);
+        }
+
+        function resumeAnimation(fromX) {
+            const slideWidth = track.firstElementChild
+                ? track.firstElementChild.offsetWidth : 150;
+            const halfWidth = slideWidth * marcas.length;
+
+            // Normalizar fromX al rango [-halfWidth, 0] para el loop
+            let startPx = fromX % halfWidth;
+            if (startPx > 0)  startPx -= halfWidth;
+            if (startPx < -halfWidth) startPx += halfWidth;
+
+            const endPx = startPx - halfWidth;
+            const isMobile = window.innerWidth <= 768;
+            const duration = isMobile ? 12 : 25;
+
+            // Porción restante del ciclo desde startPx
+            const fraction = Math.abs(startPx) / halfWidth; // 0..1
+            const remainingDuration = duration * (1 - fraction);
+
+            // Keyframe dinámico: de startPx a endPx sin salto
+            const kfName = `sliderResume_${Date.now()}`;
+            keyframeStyleTag.textContent =
+                `@keyframes ${kfName} {
+                    from { transform: translateX(${startPx}px); }
+                    to   { transform: translateX(${endPx}px); }
+                }`;
+
+            track.style.transform = '';
+            track.style.animation = 'none';
+            // Forzar reflow antes de aplicar la nueva animación
+            void track.offsetWidth;
+            // Primera iteración: va del punto exacto hasta el final del ciclo
+            track.style.animation =
+                `${kfName} ${remainingDuration}s linear 1,
+                 scrollLateral ${duration}s linear ${remainingDuration}s infinite`;
         }
 
         track.addEventListener('touchstart', (e) => {
             if (e.touches.length !== 1) return;
             isDragging = true;
             startX = e.touches[0].clientX;
-
-            // Capturamos la posición real de la animación y la fijamos
-            animOffset = getAnimatedX();
+            baseOffset = getTranslateX();
+            dragOffset = 0;
+            // Pausar la animación CSS fijando la posición actual
             track.style.animation = 'none';
-            track.style.transform = `translateX(${animOffset}px)`;
-            currentOffset = animOffset;
+            track.style.transform = `translateX(${baseOffset}px)`;
         }, { passive: true });
 
         track.addEventListener('touchmove', (e) => {
             if (!isDragging || e.touches.length !== 1) return;
-            const delta = e.touches[0].clientX - startX;
-            currentOffset = animOffset + delta;
-            track.style.transform = `translateX(${currentOffset}px)`;
+            dragOffset = e.touches[0].clientX - startX;
+            track.style.transform = `translateX(${baseOffset + dragOffset}px)`;
         }, { passive: true });
 
         track.addEventListener('touchend', () => {
             if (!isDragging) return;
             isDragging = false;
-
-            // Calculamos el ancho real de la mitad del track (los 12 slides originales)
-            const slideWidth = track.firstElementChild
-                ? track.firstElementChild.offsetWidth : 200;
-            const halfWidth = slideWidth * marcas.length;
-
-            // Normalizamos el offset para mantener el loop continuo
-            let normalizedOffset = currentOffset % halfWidth;
-            if (normalizedOffset > 0) normalizedOffset -= halfWidth;
-
-            // Retomamos la animación CSS desde la posición donde soltó el usuario
-            // Calculamos qué porcentaje del ciclo ya recorrió
-            const progress = Math.abs(normalizedOffset) / halfWidth; // 0..1
-            const isMobile = window.innerWidth <= 768;
-            const totalDuration = isMobile ? 12 : 25; // segundos — debe coincidir con el CSS
-            const delay = -(progress * totalDuration);
-
-            track.style.transform = '';
-            track.style.animation = `scrollLateral ${totalDuration}s ${delay}s linear infinite`;
+            resumeAnimation(baseOffset + dragOffset);
         });
     })();
 
