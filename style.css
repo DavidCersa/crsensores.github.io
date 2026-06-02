@@ -288,7 +288,7 @@ nav a:not(.whatsapp-link):focus-visible {
 .slider-track {
     display: flex;
     /* El ancho se establece desde JS según la cantidad de slides */
-    animation: scrollLateral 40s linear infinite;
+    animation: scrollLateral 25s linear infinite;
     will-change: transform;
 }
 
@@ -322,6 +322,8 @@ nav a:not(.whatsapp-link):focus-visible {
 
 @media (max-width: 768px) {
     .slide { width: 150px; }
+    /* Más rápido en móvil porque el slide es más angosto y se ve casi estático */
+    .slider-track { animation-duration: 12s; }
 }
 
 /* ═══════════════════════════════════════════════════
