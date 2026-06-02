@@ -287,9 +287,10 @@ nav a:not(.whatsapp-link):focus-visible {
 
 .slider-track {
     display: flex;
-    /* El ancho se establece desde JS según la cantidad de slides */
     animation: scrollLateral 25s linear infinite;
     will-change: transform;
+    touch-action: pan-y; /* permite scroll vertical, el JS maneja el horizontal */
+    cursor: grab;
 }
 
 .slide {

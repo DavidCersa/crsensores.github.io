@@ -311,6 +311,7 @@
     (function buildSlider() {
         const track = document.getElementById('slider-track');
         if (!track) return;
+
         // Duplicamos para el loop infinito
         [...marcas, ...marcas].forEach(({ src, alt }) => {
             const slide = document.createElement('div');
@@ -323,6 +324,64 @@
             img.height = 60;
             slide.appendChild(img);
             track.appendChild(slide);
+        });
+
+        // ─── Drag / swipe táctil ──────────────────────────────────────────────
+        // Solo activo en dispositivos táctiles para no interferir con el hover de PC
+        const container = track.parentElement;
+        let isDragging = false;
+        let startX = 0;
+        let currentOffset = 0;  // offset acumulado por el usuario
+        let animOffset = 0;     // posición donde estaba la animación al tocar
+
+        /** Lee la posición translateX actual del track (set por la animación CSS) */
+        function getAnimatedX() {
+            const style = window.getComputedStyle(track);
+            const matrix = new DOMMatrix(style.transform);
+            return matrix.m41; // translateX en px
+        }
+
+        track.addEventListener('touchstart', (e) => {
+            if (e.touches.length !== 1) return;
+            isDragging = true;
+            startX = e.touches[0].clientX;
+
+            // Capturamos la posición real de la animación y la fijamos
+            animOffset = getAnimatedX();
+            track.style.animation = 'none';
+            track.style.transform = `translateX(${animOffset}px)`;
+            currentOffset = animOffset;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', (e) => {
+            if (!isDragging || e.touches.length !== 1) return;
+            const delta = e.touches[0].clientX - startX;
+            currentOffset = animOffset + delta;
+            track.style.transform = `translateX(${currentOffset}px)`;
+        }, { passive: true });
+
+        track.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            // Calculamos el ancho real de la mitad del track (los 12 slides originales)
+            const slideWidth = track.firstElementChild
+                ? track.firstElementChild.offsetWidth : 200;
+            const halfWidth = slideWidth * marcas.length;
+
+            // Normalizamos el offset para mantener el loop continuo
+            let normalizedOffset = currentOffset % halfWidth;
+            if (normalizedOffset > 0) normalizedOffset -= halfWidth;
+
+            // Retomamos la animación CSS desde la posición donde soltó el usuario
+            // Calculamos qué porcentaje del ciclo ya recorrió
+            const progress = Math.abs(normalizedOffset) / halfWidth; // 0..1
+            const isMobile = window.innerWidth <= 768;
+            const totalDuration = isMobile ? 12 : 25; // segundos — debe coincidir con el CSS
+            const delay = -(progress * totalDuration);
+
+            track.style.transform = '';
+            track.style.animation = `scrollLateral ${totalDuration}s ${delay}s linear infinite`;
         });
     })();
 
