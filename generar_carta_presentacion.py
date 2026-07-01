@@ -37,7 +37,7 @@ class CartaPDF(FPDF):
         # Logo principal grande
         logo_path = os.path.join(BASE_DIR, "Imagenes", "logo", "Logo_final.png")
         if os.path.exists(logo_path):
-            with self.local_context(fill_opacity=0.15):
+            with self.local_context(fill_opacity=0.22):
                 self.image(logo_path, x=35, y=80, w=140)
 
         # 3 imagenes de productos como fondo decorativo
