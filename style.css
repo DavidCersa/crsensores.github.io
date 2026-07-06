@@ -57,6 +57,39 @@ body::after {
 }
 
 /* ═══════════════════════════════════════════════════
+   BARRA SUPERIOR DE CONTACTO
+═══════════════════════════════════════════════════ */
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 101;
+    background: linear-gradient(90deg, var(--azul-fondo), var(--dorado), var(--azul-fondo));
+    text-align: center;
+    padding: 8px 15px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.top-bar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--transicion);
+}
+
+.top-bar a:hover {
+    color: var(--dorado-brillante);
+}
+
+.top-bar i {
+    font-size: 1.1rem;
+}
+
+/* ═══════════════════════════════════════════════════
    HEADER
 ═══════════════════════════════════════════════════ */
 header {
@@ -65,7 +98,7 @@ header {
     align-items: center;
     padding: 10px 5%;
     position: sticky;
-    top: 0;
+    top: 36px;
     background: rgba(74, 90, 106, 0.98);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
