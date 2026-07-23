@@ -49,6 +49,9 @@ TIEMPO_ESPERA = 20  # Segundos entre cada envío
 FIRMA_HTML = """
 <table style="font-family: Arial, sans-serif; font-size: 13px; color: #333; border-top: 2px solid #0056b3; padding-top: 12px; margin-top: 20px;">
   <tr>
+    <td style="padding-right: 15px; vertical-align: top;">
+      <img src="https://crsensores.com/Imagenes/firmas/firma_camila.png" alt="CRSensores" width="90" style="border-radius: 4px;">
+    </td>
     <td style="vertical-align: top;">
       <strong style="font-size: 14px; color: #0056b3;">Camila Rivera</strong><br>
       <span style="color: #555;">Asesora Comercial</span><br>
@@ -56,11 +59,6 @@ FIRMA_HTML = """
       <span>📞 <a href="https://wa.link/ut9tul" style="color: #0056b3;">WhatsApp</a></span><br>
       <span>📧 comercial@crsensores.com</span><br>
       <span>🌐 <a href="https://crsensores.com/" style="color: #0056b3;">www.crsensores.com</a></span>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding-top: 10px;">
-      <img src="https://crsensores.com/Imagenes/firmas/firma_camila.png" alt="CRSensores" width="150" style="border-radius: 4px;">
     </td>
   </tr>
 </table>
@@ -81,14 +79,13 @@ Mi nombre es Camila Rivera y hago parte del equipo de CRSensores, empresa especi
 - Reducir significativamente los costos asociados a fallas técnicas y mantenimientos correctivos.
 - Contar con un suministro ágil, disponibilidad inmediata y atención personalizada.
 
-Me gustaría compartirles nuestro portafolio de productos y conocer si actualmente tienen necesidades en las que podamos aportar valor como aliados estratégicos.
+Me gustaría compartirles nuestro portafolio de productos y conocer si actualmente tienen necesidades en las que podamos aportar valor como aliados estratégicos. Puede consultar nuestra oferta en https://crsensores.com/
 
 Si es posible, agradecería que me indicaran con quién podría comunicarme del área de Mantenimiento, Compras o Cadena de Suministro, o bien coordinar una breve llamada de 5 minutos la próxima semana.
 
 Quedo atenta a sus comentarios y agradezco de antemano su tiempo y atención.
 
 Cordialmente,
-Camila Rivera
 WhatsApp: https://wa.link/ut9tul
 Email: comercial@crsensores.com
 Web: https://crsensores.com/
@@ -101,7 +98,7 @@ def generar_cuerpo(empresa):
     <html>
     <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
 
-        <p>Buenas tardes, equipo de <strong>{empresa}</strong>:</p>
+        <p>Buen día, equipo de <strong>{empresa}</strong>:</p>
 
         <p>Espero que se encuentren muy bien.</p>
 
@@ -123,7 +120,9 @@ def generar_cuerpo(empresa):
         </ul>
 
         <p>Me gustaría compartirles nuestro portafolio de productos y conocer si actualmente
-        tienen necesidades en las que podamos aportar valor como aliados estratégicos.</p>
+        tienen necesidades en las que podamos aportar valor como aliados estratégicos.
+        Puede consultar nuestra oferta en
+        <a href="https://crsensores.com/" style="color: #0056b3;">www.crsensores.com</a>.</p>
 
         <p>Si es posible, agradecería que me indicaran con quién podría comunicarme del área de
         <strong>Mantenimiento, Compras o Cadena de Suministro</strong>, o bien coordinar una
