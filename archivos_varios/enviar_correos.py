@@ -47,18 +47,18 @@ TIEMPO_ESPERA = 20  # Segundos entre cada envío
 # FIRMA HTML
 # ─────────────────────────────────────────────
 FIRMA_HTML = """
-<table style="font-family: Arial, sans-serif; font-size: 13px; color: #333; border-top: 2px solid #0056b3; padding-top: 12px; margin-top: 20px;">
+<table style="font-family: Arial, sans-serif; font-size: 13px; color: #333; border-top: 2px solid #0056b3; padding-top: 12px; margin-top: 20px;" cellpadding="0" cellspacing="0">
   <tr>
-    <td style="padding-right: 15px; vertical-align: top;">
-      <img src="https://crsensores.com/Imagenes/firmas/firma_camila.png" alt="CRSensores" width="90" style="border-radius: 4px;">
+    <td align="center" style="padding-bottom: 12px;">
+      <img src="https://crsensores.com/Imagenes/firmas/firma_camila.png" alt="CRSensores" width="160" style="border-radius: 6px; display: block;">
     </td>
-    <td style="vertical-align: top;">
-      <strong style="font-size: 14px; color: #0056b3;">Camila Rivera</strong><br>
-      <span style="color: #555;">Asesora Comercial</span><br>
-      <strong>CRSensores</strong> — Sensores Electrónicos de Alta Precisión<br>
-      <span>📞 <a href="https://wa.link/ut9tul" style="color: #0056b3;">WhatsApp</a></span><br>
+  </tr>
+  <tr>
+    <td align="center" style="line-height: 1.6;">
+      <strong style="color: #0056b3;">CRSensores</strong> — Sensores Electrónicos de Alta Precisión<br>
+      <span>📞 <a href="https://wa.link/ut9tul" style="color: #0056b3; text-decoration: none;">WhatsApp</a></span> &nbsp;|&nbsp;
       <span>📧 comercial@crsensores.com</span><br>
-      <span>🌐 <a href="https://crsensores.com/" style="color: #0056b3;">www.crsensores.com</a></span>
+      <span>🌐 <a href="https://crsensores.com/" style="color: #0056b3; text-decoration: none;">www.crsensores.com</a></span>
     </td>
   </tr>
 </table>
