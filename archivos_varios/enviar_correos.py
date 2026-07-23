@@ -40,7 +40,7 @@ DB_TABLE = "envio_mail"
 # CONFIGURACIÓN DEL CORREO
 # ─────────────────────────────────────────────
 REMITENTE_NOMBRE = "Camila Rivera CRSensores"
-ASUNTO = "CRSensores- Proveedor de sensores electrónicos para sus proyectos — {empresa}"
+ASUNTO = "CRSensores - Proveedor de sensores electrónicos para sus proyectos - {empresa}"
 TIEMPO_ESPERA = 20  # Segundos entre cada envío
 
 # ─────────────────────────────────────────────
@@ -50,7 +50,7 @@ FIRMA_HTML = """
 <table style="font-family: Arial, sans-serif; font-size: 13px; color: #333; border-top: 2px solid #0056b3; padding-top: 12px; margin-top: 20px;" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center" style="padding-bottom: 12px;">
-      <img src="https://crsensores.com/Imagenes/firmas/firma_camila.png" alt="CRSensores" width="160" style="border-radius: 6px; display: block;">
+      <img src="https://crsensores.com/Imagenes/firmas/firma_camila.png" alt="CRSensores" width="320" style="border-radius: 6px; display: block;">
     </td>
   </tr>
   <tr>
