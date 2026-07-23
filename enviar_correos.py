@@ -9,9 +9,11 @@ Guarda copia en la carpeta "Sent" del buzón IMAP.
 import smtplib
 import imaplib
 import time
+import uuid
 from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.utils import formatdate, formataddr
 
 import pymysql
 
@@ -23,7 +25,7 @@ SMTP_PORT = 465                         # 465 SSL
 IMAP_HOST = "mail.crsensores.com"
 IMAP_PORT = 993                         # 993 SSL
 SMTP_USER = "comercial@crsensores.com"
-SMTP_PASSWORD = ""
+SMTP_PASSWORD = "C0m3rc14l26+"
 
 # ─────────────────────────────────────────────
 # CONFIGURACIÓN BASE DE DATOS MySQL (cPanel)
@@ -32,7 +34,7 @@ DB_HOST = "crsensores.com"
 DB_USER = "crsensor_harol"           # Usuario de la BD en cPanel
 DB_PASSWORD = "bd_4dm1n2026+"
 DB_NAME = "crsensor_clientes"
-DB_TABLE = "envio_email"
+DB_TABLE = "envio_mail"
 
 # ─────────────────────────────────────────────
 # CONFIGURACIÓN DEL CORREO
@@ -47,9 +49,6 @@ TIEMPO_ESPERA = 20  # Segundos entre cada envío
 FIRMA_HTML = """
 <table style="font-family: Arial, sans-serif; font-size: 13px; color: #333; border-top: 2px solid #0056b3; padding-top: 12px; margin-top: 20px;">
   <tr>
-    <td style="padding-right: 15px; vertical-align: top;">
-      <img src="https://crsensores.com/imagenes/firmas/firma_camila.png" alt="CRSensores" width="90" style="border-radius: 4px;">
-    </td>
     <td style="vertical-align: top;">
       <strong style="font-size: 14px; color: #0056b3;">Camila Rivera</strong><br>
       <span style="color: #555;">Asesora Comercial</span><br>
@@ -59,7 +58,40 @@ FIRMA_HTML = """
       <span>🌐 <a href="https://crsensores.com/" style="color: #0056b3;">www.crsensores.com</a></span>
     </td>
   </tr>
+  <tr>
+    <td style="padding-top: 10px;">
+      <img src="https://crsensores.com/Imagenes/firmas/firma_camila.png" alt="CRSensores" width="150" style="border-radius: 4px;">
+    </td>
+  </tr>
 </table>
+"""
+
+
+def generar_cuerpo_texto(empresa):
+    """Genera la versión en texto plano del correo."""
+    return f"""Buenas tardes, equipo de {empresa}:
+
+Espero que se encuentren muy bien.
+
+Me pongo en contacto con ustedes porque sigo de cerca el trabajo que realiza {empresa} en el sector industrial y sé que la confiabilidad y precisión de sus procesos son fundamentales para mantener la eficiencia de sus líneas de producción.
+
+Mi nombre es Camila Rivera y hago parte del equipo de CRSensores, empresa especializada en el suministro de sensores electrónicos de alta precisión para la industria. Acompañamos a nuestros clientes con soluciones que les permiten:
+
+- Optimizar los tiempos de respuesta de sus sistemas de control.
+- Reducir significativamente los costos asociados a fallas técnicas y mantenimientos correctivos.
+- Contar con un suministro ágil, disponibilidad inmediata y atención personalizada.
+
+Me gustaría compartirles nuestro portafolio de productos y conocer si actualmente tienen necesidades en las que podamos aportar valor como aliados estratégicos.
+
+Si es posible, agradecería que me indicaran con quién podría comunicarme del área de Mantenimiento, Compras o Cadena de Suministro, o bien coordinar una breve llamada de 5 minutos la próxima semana.
+
+Quedo atenta a sus comentarios y agradezco de antemano su tiempo y atención.
+
+Cordialmente,
+Camila Rivera
+WhatsApp: https://wa.link/ut9tul
+Email: comercial@crsensores.com
+Web: https://crsensores.com/
 """
 
 
@@ -156,12 +188,17 @@ def marcar_enviado(conexion, registro_id):
 def enviar_correo(servidor, destinatario, empresa):
     """Arma y envía un correo individual. Retorna el mensaje como string."""
     mensaje = MIMEMultipart("alternative")
-    mensaje["From"] = f"{REMITENTE_NOMBRE} <{SMTP_USER}>"
+    mensaje["From"] = formataddr((REMITENTE_NOMBRE, SMTP_USER))
     mensaje["To"] = destinatario
     mensaje["Subject"] = ASUNTO.format(empresa=empresa)
-    mensaje["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S %z")
+    mensaje["Date"] = formatdate(localtime=True)
+    mensaje["Message-ID"] = f"<{uuid.uuid4()}@crsensores.com>"
+    mensaje["Reply-To"] = SMTP_USER
+    mensaje["List-Unsubscribe"] = f"<mailto:{SMTP_USER}?subject=Desuscribir>"
 
     cuerpo_html = generar_cuerpo(empresa)
+    cuerpo_texto = generar_cuerpo_texto(empresa)
+    mensaje.attach(MIMEText(cuerpo_texto, "plain"))
     mensaje.attach(MIMEText(cuerpo_html, "html"))
 
     mensaje_str = mensaje.as_string()
@@ -200,8 +237,10 @@ def main():
 
     # Conectar al servidor SMTP con SSL
     try:
-        servidor = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT)
+        servidor = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=30)
+        servidor.ehlo()
         servidor.login(SMTP_USER, SMTP_PASSWORD)
+        servidor.ehlo()
         print("Conexión SMTP establecida correctamente.\n")
     except Exception as e:
         print(f"Error al conectar con el servidor SMTP: {e}")
